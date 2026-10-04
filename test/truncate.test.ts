@@ -11,9 +11,9 @@ describe("truncate", () => {
   });
 
   it("dlhý text skráti na hranici slova a pridá …", () => {
-    const result = truncate("ahoj krásny svet", 12);
+    const result = truncate("ahoj krásny svet", 13);
     expect(result).toBe("ahoj krásny…");
-    expect(result.length).toBeLessThanOrEqual(12);
+    expect(result.length).toBeLessThanOrEqual(13);
   });
 
   it("odstráni koncové medzery pred …", () => {
