@@ -1,0 +1,14 @@
+{
+  "env": {
+    "TRACE_TO_LANGFUSE": "true"
+  },
+  "permissions": {
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(gh pr merge:*)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  }
+}
