@@ -36,6 +36,7 @@ describe("isValidIban", () => {
   it("odmietne pomlčky a znaky mimo ASCII", () => {
     expect(isValidIban("SK17-9999-0000-0012-3456-7890")).toBe(false);
     expect(isValidIban("SK1799990000001234567ß90")).toBe(false);
+    expect(isValidIban("GB82WEſT12345698765432")).toBe(false);
     expect(isValidIban("SK17９９９９0000001234567890")).toBe(false);
   });
 

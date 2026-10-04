@@ -8,7 +8,10 @@
  */
 export function isValidIban(iban: unknown): boolean {
   if (typeof iban !== "string") return false;
-  const s = iban.replace(/ /g, "").toUpperCase();
+  const raw = iban.replace(/ /g, "");
+  // Najprv ASCII kontrola – toUpperCase() by inak namapoval napr. "ſ" na "S".
+  if (!/^[A-Za-z0-9]+$/.test(raw)) return false;
+  const s = raw.toUpperCase();
   if (!/^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/.test(s)) return false;
   if (s.startsWith("SK") && s.length !== 24) return false;
 
