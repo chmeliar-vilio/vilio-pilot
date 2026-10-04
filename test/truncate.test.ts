@@ -44,4 +44,27 @@ describe("truncate", () => {
   it("záporné max vyhodí RangeError", () => {
     expect(() => truncate("ahoj", -3)).toThrow(RangeError);
   });
+
+  it("NaN vyhodí RangeError", () => {
+    expect(() => truncate("abc", NaN)).toThrow(RangeError);
+  });
+
+  it("NaN vyhodí RangeError aj pre prázdny reťazec", () => {
+    expect(() => truncate("", NaN)).toThrow(RangeError);
+  });
+
+  it("Infinity vráti text nezmenený", () => {
+    expect(truncate("ahoj svet", Infinity)).toBe("ahoj svet");
+    expect(truncate("", Infinity)).toBe("");
+  });
+
+  it("necelé max sa správa ako Math.floor(max)", () => {
+    const result = truncate("ahoj svet", 4.7);
+    expect(result).toBe(truncate("ahoj svet", 4));
+    expect(result.length).toBeLessThanOrEqual(4);
+  });
+
+  it("necelé max pod 1 vyhodí RangeError", () => {
+    expect(() => truncate("ahoj", 0.5)).toThrow(RangeError);
+  });
 });
